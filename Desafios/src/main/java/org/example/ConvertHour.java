@@ -11,7 +11,7 @@ public class ConvertHour{
        hour = value / 3600;
        min = (value % 3600) / 60 ;
        seconds = (value % 3600) % 60;
-
+        .
         System.out.println("");
 
 
