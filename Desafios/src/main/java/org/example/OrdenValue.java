@@ -6,21 +6,37 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrdenValue {
-    static List<Integer> listOfNumberPar = new ArrayList<>();
-    static List<Integer> listOfNumberImpar = new ArrayList<>();
-    static int number = 1000;
+    static List<Integer> listOfNumber = new ArrayList<>();
+    int number;
 
-    public static void askNumberAndIncludeToList() {
-        for (int i = 0; i < number; i++) {
-            if (i % 2 == 0){
-                listOfNumberPar.add(i);
-            }else {
-                listOfNumberImpar.add(i);
-            }
+    public static void howMannyNumber(){
+      System.out.println("Write how many number u want add");
+      int number = Scan.sc.nextInt();
+      if (number > 0){
+        for (int i = 0; i <  number; i++) {
+          System.out.println("Write number "+ (i+1));
+          int write = Scan.sc.nextInt();
+          while (write < 0){
+            System.out.println("number need to be positive");
+            write = Scan.sc.nextInt();
+          }
+            listOfNumber.add(write);
         }
-
-        System.out.println("Number par "+ listOfNumberPar);
-        System.out.println("Number impar "+ listOfNumberImpar);
+      }else {
+        System.out.println("u need to write positive number ");
+      }
     }
+    public static void askNumberAndIncludeToList() {
+       List<Integer> listEven = listOfNumber.stream().sorted((a,b)->{
+         if (a % 2 == 0 && b % 2 != 0){
+           return -1;
+         } else if (a % 2 != 0 && b % 2 == 0){
+           return 1;
+         }else {
+          return a.compareTo(b);
+         }
+      }).collect(Collectors.toList());
 
+      System.out.println("Number orden "+ listEven);
+    }
 }
